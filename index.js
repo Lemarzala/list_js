@@ -1,11 +1,11 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   res.send(`
     <div>
       <form method="POST">
@@ -18,11 +18,11 @@ app.get('/', (req, res) => {
   `);
 });
 
-app.post('/', (req, res) => {
+app.post("/", (req, res) => {
   console.log(req.body);
-  res.send('Account created!!!');
+  res.send("Account created!!!");
 });
 
-app.listen(3000, () => {
-  console.log('Listening');
+app.listen(2000, () => {
+  console.log("Listening");
 });
