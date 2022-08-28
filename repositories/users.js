@@ -61,7 +61,7 @@ class UsersRepository {
   }
 
   randomId() {
-    return crypto.randomBytes(4).toString("hex");
+    return crypto.randomBytes(2).toString("hex");
   }
 
   async getOne(id) {
