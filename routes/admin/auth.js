@@ -15,7 +15,6 @@ const {
 const router = express.Router();
 
 router.get("/signup", (req, res) => {
-  console.log("inside here");
   res.send(signupTemplate({ req }));
 });
 

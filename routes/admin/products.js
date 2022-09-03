@@ -35,7 +35,7 @@ router.post(
   }
 );
 
-router.get("/admin/products/:id/edit", async (req, res) => {
+router.get("/admin/products/:id/edit", requireAuth, async (req, res) => {
   const product = await productsRepo.getOne(req.params.id);
 
   if (!product) {
@@ -43,6 +43,38 @@ router.get("/admin/products/:id/edit", async (req, res) => {
   }
 
   res.send(productsEditTemplate({ product }));
+});
+
+router.post(
+  "/admin/products/:id/edit",
+  requireAuth,
+  upload.single("image"),
+  [requireTitle, requirePrice],
+  handleErrors(productsEditTemplate, async (req) => {
+    const product = await productsRepo.getOne(req.params.id);
+    return { product };
+  }),
+  async (req, res) => {
+    const changes = req.body;
+
+    if (req.file) {
+      changes.image = req.file.buffer.toString("base64");
+    }
+
+    try {
+      await productsRepo.update(req.params.id, changes);
+    } catch (err) {
+      return res.send("Could not find item");
+    }
+
+    res.redirect("/admin/products");
+  }
+);
+
+router.post("/admin/products/:id/delete", requireAuth, async (req, res) => {
+  await productsRepo.delete(req.params.id);
+
+  res.redirect("/admin/products");
 });
 
 module.exports = router;
