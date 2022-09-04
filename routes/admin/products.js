@@ -61,6 +61,12 @@ router.post(
       changes.image = req.file.buffer.toString("base64");
     }
 
+    try {
+      await productsRepo.update(req.params.id, changes);
+    } catch (err) {
+      return res.send("Could not find item");
+    }
+
     res.redirect("/admin/products");
   }
 );
