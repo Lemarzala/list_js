@@ -2,9 +2,22 @@
   {
     "items": [
       {
-        "quantity": 4
+        "quantity": 8
+      },
+      {
+        "id": "62b582ba",
+        "quantity": 2
       }
     ],
     "id": "0b473d9a"
+  },
+  {
+    "items": [
+      {
+        "id": "62b582ba",
+        "quantity": 1
+      }
+    ],
+    "id": "0d67c249"
   }
 ]

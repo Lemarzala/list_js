@@ -7,6 +7,7 @@ const router = express.Router();
 
 // Receive a post request to add an item to a cart
 router.post("/cart/products", async (req, res) => {
+  console.log(req.body);
   // Figure out the cart!
   let cart;
   if (!req.session.cartId) {
@@ -23,6 +24,7 @@ router.post("/cart/products", async (req, res) => {
   const existingItem = cart.items.find(
     (item) => item.id === req.body.productId
   );
+  console.log(existingItem);
   if (existingItem) {
     // increment quantity and save cart
     existingItem.quantity++;
@@ -33,7 +35,7 @@ router.post("/cart/products", async (req, res) => {
   await cartsRepo.update(cart.id, {
     items: cart.items,
   });
-
+  console.log(cart);
   res.send("Product added to cart");
 });
 
