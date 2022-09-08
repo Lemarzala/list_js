@@ -6,7 +6,7 @@ const adminProductsRouter = require("./routes/admin/products");
 const productsRouter = require("./routes/products");
 const cartsRouter = require("./routes/carts");
 
-// const app = express();
+const app = express();
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
