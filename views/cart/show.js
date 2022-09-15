@@ -1,10 +1,10 @@
 const layout = require("../layout");
 
 module.exports = ({ items }) => {
-  const totalPrice = items.reduce((prev, item) => {
-    console.log(item);
-    // return prev + item.quantity * item.product.price;
-  }, 0);
+  let totalPrice = 0;
+  for (let item of items) {
+    totalPrice += item.quantity * item.product.price;
+  }
 
   const renderedItems = items
     .map((item) => {
